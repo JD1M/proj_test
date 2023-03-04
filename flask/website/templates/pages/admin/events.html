@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    {% include "/pages/admin/_sidebar.html" %}
+
+    <div class="col-md-8 col-lg-10 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <h1>My Events
+            <a href="/admin/event/create" class="btn btn-primary float-right">Create</a></h1>
+        <small>4 records</small>
+        <table class="table table-condensed no-first-col">
+            <tbody>
+                <th></th>
+                <th colspan="2">Content</th>
+                <th>Created Date</th>
+                <th>End Date</th>
+            </tbody>
+            <tbody>
+
+<!--            To populate from the DB-->
+            {% for n in all_events %}
+
+            <tr>
+                    <td><a href="/admin/edit_event/{{n._id}}" class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></a></td>
+                    <td style="width:200px">
+                        <img src="{{ n.image_url }}" class="card-img-top" alt="...">
+                    </td>
+                    <td>
+                        <h5>{{n.eventname}} </h5>
+                        {{n.content}}
+                    </td>
+                    <td>2023-02-01</td>
+                    <td>{{n.eventdate}}</td>
+                </tr>
+
+            {% endfor %}
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+Menu.setEvents();
+</script>
+
+{% endblock %}
